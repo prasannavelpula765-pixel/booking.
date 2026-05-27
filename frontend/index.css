@@ -1,0 +1,230 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+
+
+#home {
+  background: url('restaurant.jpg') no-repeat center center; /* optional background image */
+  background-size: cover;
+  color: rgb(36, 35, 35);
+  text-align: center;
+  padding: 2px;
+}
+
+#home h2 {
+  font-size: 40px;
+  text-shadow: 2px 2px 5px rgb(244, 101, 11); /* makes text stand out */
+  text-align: center;
+  border: 3px solid black;
+  padding:10px;
+}
+
+#home p {
+  font-size: 20px;
+  display: inline-block;
+  border-radius: 5px;
+  text-align: center;
+}
+.menu {
+  text-align: center;
+  font-size: 50px;
+  color: #dec60e;
+  margin-top: 0px;
+}
+
+#menu{
+  padding: 20px;
+  display:flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.img1{
+  height:100px;
+  width:100px;
+  padding-left: 10px;
+}
+
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  #home h2 {
+    font-size: 32px;
+  }
+
+  .menu {
+    font-size: 36px;
+  }
+
+  #menu {
+    gap: 16px;
+    padding: 12px;
+  }
+
+  .item1,
+  .item2,
+  .item3 {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .img1 {
+    height: 90px;
+    width: 90px;
+  }
+
+  #cart,
+  #booking,
+  footer {
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  input,
+  button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  button {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding: 12px 8px;
+  }
+
+  nav h1 {
+    font-size: 18px;
+  }
+
+  .menu {
+    font-size: 30px;
+  }
+
+  #home h2 {
+    font-size: 28px;
+  }
+}
+
+.img3{
+  height:100px;
+  width:100px;
+  padding-left:100px;
+}
+
+.img2{
+  height:50px;
+  width:100px;
+  padding-left:100px;
+}
+
+
+
+.item1{
+  padding:10px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.item2{
+  padding:10px;
+  border: 2px solid black;
+  text-align: center;
+}
+
+.item3{
+  padding:10px;
+  border: 2px solid black;
+  text-align: center;
+}
+button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  text-align: center;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+.cart-item span {
+  flex: 1;
+}
+.remove-item {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-left: 12px;
+}
+.remove-item:hover {
+  background: #bd2130;
+}
+#cart{
+  text-align: right;
+}
+#booking{
+  text-align: right;
+}
+footer {
+  background: #6647ff;
+  color: white;
+  padding: 10px;
+  text-align: center; 
+}
+#thank-you {
+  margin-top: 15px;
+  font-size: 18px;
+}
+.btn{
+  display:inline-block;
+  padding:10px 20px;
+  background-color: #4CAF50;
+  color:white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.btn:hover{
+  background-color: #45a049;
+} 
+

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SR Homes Foods</title>
+  <link rel="stylesheet" href="index.css"> <!-- CSS file -->
+  <link href="thank.html">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <h1>🍴 SR Homes Foods</h1>
+    <ul>
+      <li><a href="#home">#Home</a></li>
+      <li><a href="#menu">#Menu</a></li>
+      <li><a href="#cart">#Cart</a></li>
+      <li><a href="#booking">#Booking</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Welcome to SR Homes Food !</h2>
+    <p>Order your favorite food online!</p>
+  </section>
+
+  <h2 class="menu"> Menu</h2>
+
+
+  <!-- Menu Section -->
+  <section id="menu">
+    <div class="item1">
+      <img class="img1" src="mutton.jpg".jpg">
+      <h3>Mutton - ₹250</h3>
+      <button onclick="addToCart('Mutton',250)">Add to Cart</button>
+    </div>
+    <div class="item2">
+      <img class="img1" src="egg.jpg".jpg">
+      <h3>Egg - ₹50</h3>
+      <button onclick="addToCart('Egg',50)">Add to Cart</button>
+    </div>
+    <div class="item3">
+      <img class="img1" src="chiken.avif".jpg">
+      <h3>Chicken - ₹150</h3>
+      <button onclick="addToCart('Chicken',150)">Add to Cart</button>
+    </div>
+  </section>
+
+  <!-- Cart Section -->
+  <!-- Cart Section -->
+   
+
+
+<section id="cart">
+  <h2>Your Cart</h2>
+  <ul id="cart-items"></ul>
+
+  <p>Total: ₹<span id="total">0</span></p>
+
+  <!-- Customer Details Form -->
+  <h3>Enter Your Details</h3>
+  <form id="customer-details">
+    <label>Name:</label>
+    <input type="text" id="cust-name" placeholder="Name" required><br>
+
+    <label>Food Items:</label>
+    <input type="text" id="cust-food" placeholder="Items" required><br>
+
+    <label>Date & Time:</label>
+    <input type="datetime-local" id="cust-datetime" required><br>
+
+    <label> Address:</label>
+    <input type="text" id=" Address" placeholder="Address" required><br>
+
+    
+    <label>Pincode:</label>
+    <input type="tel" id="Pincode"
+           pattern="[0-9]{10}"
+           maxlength="6"
+           placeholder="Pincode"
+           required
+           inputmode="numeric"><br>
+
+    <label>Mobile Number:</label>
+    <input type="tel" id="cust-mobile"
+           pattern="[0-9]{10}"
+           maxlength="10"
+           placeholder="Enter 10-digit number"
+           required
+           inputmode="numeric"><br>
+  </form>
+
+  <!-- Pay Button -->
+  <button id="pay-button">Pay with UPI</button>
+</section>
+
+<script>
+  let cart = [];
+  let total = 0;
+
+  function addToCart(item, price) {
+    cart.push({item, price});
+    total += price;
+
+    let cartList = document.getElementById("cart-items");
+    cartList.innerHTML = "";
+    cart.forEach(c => {
+      let li = document.createElement("li");
+      li.textContent = c.item + " - ₹" + c.price;
+      cartList.appendChild(li);
+    });
+
+    // ✅ Update total correctly
+    document.getElementById("total").textContent = total;
+  }
+
+  // ✅ Send total + customer details to UPI page
+  document.getElementById("pay-button").onclick = function() {
+    if (total > 0) {
+      const name = document.getElementById("cust-name").value;
+      const food = document.getElementById("cust-food").value;
+      const datetime = document.getElementById("cust-datetime").value;
+      const mobile = document.getElementById("cust-mobile").value;
+
+      if (!name || !food || !datetime || !mobile) {
+        alert("Please fill in all details before paying.");
+        return;
+      }
+
+      // Pass details + total to payment page
+      const url = `together.html?amount=${total}&name=${encodeURIComponent(name)}&food=${encodeURIComponent(food)}&datetime=${encodeURIComponent(datetime)}&mobile=${mobile}`;
+      window.location.href = url;
+    } else {
+      alert("Your cart is empty. Please add items before paying.");
+    }
+  };
+</script>
+
+
+  <!-- Footer Section -->
+<footer>
+  <p>📍 SR Homes Foods, Plvd Road, Bengaluru, India</p>
+  <p>📞 Contact: +91 8106413016 </p>
+  <p>© 2026 SR Homes foods. All rights reserved.</p>
+</footer>
+<script src="index.js"></script> <!-- JS file -->
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#28a745">
+  <title>Pay with UPI</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    }
+    img {
+      margin-top: 20px;
+      max-width: 100%;
+      height: auto;
+    }
+    .details-box {
+      text-align: left;
+      background: #f7f7f7;
+      border: 1px solid #ddd;
+      padding: 16px;
+      margin: 16px 0;
+      border-radius: 8px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .details-box h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .details-box p {
+      margin: 4px 0;
+      line-height: 1.4;
+    }
+    .desktop-note {
+      margin-top: 16px;
+      color: #333;
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background: #28a745;
+      color: white;
+    }
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pay with UPI</h2>
+    <p id="upi-amount"></p>
+    <div id="qr-section"></div>
+    <div id="order-details" class="details-box"></div>
+    <button id="pay-button">Pay Now</button>
+    <p id="desktop-note" class="desktop-note">If you are on desktop, scan the QR code with your phone and then enter the transaction ID to open WhatsApp automatically.</p>
+
+    <div id="txn-section" style="display:none; max-width:420px; margin:12px auto; text-align:left;">
+      <label for="txn-id">Enter UPI Transaction ID (from your app):</label>
+      <input id="txn-id" type="text" placeholder="Transaction ID" style="width:100%; padding:8px; margin-top:6px; box-sizing:border-box;">
+      <button id="submit-txn" style="margin-top:8px;">Submit Transaction</button>
+    </div>
+  </div>
+  
+  <script src="together.js"></script>
+</body>
+</html>
+

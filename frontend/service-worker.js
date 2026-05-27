@@ -1,0 +1,24 @@
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open("srfoods-cache").then((cache) => {
+      return cache.addAll([
+        "./",
+        "./index.html",
+        "./index.css",
+        "./index.js",
+        "./together.html",
+        "./together.js",
+        "./thank.html",
+        "./icon.svg"
+      ]);
+    })
+  );
+});
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
+  );
+});

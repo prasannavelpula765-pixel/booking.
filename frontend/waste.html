@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pay with UPI</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+    .container {
+      text-align: center;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    }
+    img {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background: #28a745;
+      color: white;
+    }
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Pay with UPI</h2>
+    <p id="upi-amount"></p>
+    <div id="qr-section"></div>
+    <button id="pay-button">Pay Now</button>
+    <button id="confirm-button" style="display:none;">Confirm Order</button>
+  </div>
+<script>
+document.getElementById("pay-button").onclick = function(e){
+  var options = {
+    "key": "YOUR_RAZORPAY_KEY_ID", // from Razorpay dashboard
+    "amount": 50000, // amount in paise (₹500.00)
+    "currency": "INR",
+    "name": "SR Homes Foods",
+    "description": "Food Order Payment",
+    "handler": function (response){
+         document.getElementById("upi-amount").textContent = "Amount to Pay: ₹" + amount;
+
+    // Build UPI link with total
+    const upiLink = `upi://pay?pa=suryav3016@nyes&pn=SR%20Homes%20Foods&am=${amount}&cu=INR`;
+
+    // ✅ Generate QR dynamically from UPI link
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
+    document.getElementById("qr-section").innerHTML = `<img src="${qrUrl}" alt="UPI QR Code">`;
+
+    // Pay button → open UPI app directly
+    document.getElementById("pay-button").onclick = function() {
+      window.location.href = upiLink;
+      document.getElementById("confirm-button").style.display = "inline-block";
+    };
+        // ✅ Payment success → redirect to thank.html
+        window.location.href = "thank.html?payment_id=" + response.razorpay_payment_id;
+
+        // ✅ Also open WhatsApp with order details
+        const orderMessage = `Order Confirmed!
+Payment ID: ${response.razorpay_payment_id}
+Total: ₹500
+Customer: Name, Mobile, Items...`;
+
+        const whatsappLink = `https://wa.me/918106413016?text=${encodeURIComponent(orderMessage)}`;
+        window.open(whatsappLink, "_blank");
+    },
+    "prefill": {
+        "name": "Customer Name",
+        "contact": "9999999999"
+    },
+    "theme": {
+        "color": "#28a745"
+    }
+  };
+  var rzp1 = new Razorpay(options);
+  rzp1.open();
+  e.preventDefault();
+}
+</script>
+
+
+  <script src="together.js"></script>
+</body>
+</html>
+
